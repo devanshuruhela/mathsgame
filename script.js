@@ -19,7 +19,7 @@ const penaltyTimeEl = document.querySelector('.penalty-time');
 const playAgainBtn = document.querySelector('.play-again');
 
 // Equations
-
+let questionamount = 0;
 let equationsArray = [];
 
 // Game Page
@@ -82,3 +82,38 @@ function createEquations() {
 //   bottomSpacer.classList.add('height-500');
 //   itemContainer.appendChild(bottomSpacer);
 // }
+
+function getnoofquestion()
+{
+  let radiovalue;
+  radioInputs.forEach(data =>{
+    if(data.checked)
+    {
+      radiovalue = data.value;
+      
+    }
+  })
+  return radiovalue;
+}
+
+function noofquestions(event){
+  questionamount = getnoofquestion();
+  event.preventDefault();
+  console.log(questionamount)
+
+}
+
+startForm.addEventListener('click' , ()=>
+{
+  radioContainers.forEach(item=>
+    {
+      item.classList.remove('selected-label');
+      if(item.children[1].checked)
+      {
+        item.classList.add('selected-label');
+
+      }
+    })
+})
+
+startForm.addEventListener('submit' , noofquestions)
