@@ -89,6 +89,20 @@ function showcountdown()
   splashPage.hidden = true;
 }
 
+
+function countdownStart()
+{
+  countdown.textContent = "3";
+  setTimeout(() => {
+    countdown.textContent = "2";
+  }, 1000);
+  setTimeout(() => {
+    countdown.textContent = "1";
+  }, 2000);
+  setTimeout(() => {
+    countdown.textContent = "Go!";
+  }, 3000);
+}
 function getnoofquestion()
 {
   let radiovalue;
@@ -106,7 +120,9 @@ function noofquestions(event){
   questionamount = getnoofquestion();
   event.preventDefault();
   console.log(questionamount)
-  showcountdown();
+  if(questionamount){
+    countdownStart();
+  showcountdown();}
 
 }
 
