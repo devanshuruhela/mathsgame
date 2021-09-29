@@ -82,6 +82,12 @@ function createEquations() {
 //   bottomSpacer.classList.add('height-500');
 //   itemContainer.appendChild(bottomSpacer);
 // }
+// navigate to splash to countdown
+function showcountdown()
+{
+  countdownPage.hidden = false;
+  splashPage.hidden = true;
+}
 
 function getnoofquestion()
 {
@@ -100,6 +106,7 @@ function noofquestions(event){
   questionamount = getnoofquestion();
   event.preventDefault();
   console.log(questionamount)
+  showcountdown();
 
 }
 
