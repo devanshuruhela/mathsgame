@@ -38,17 +38,38 @@ let finaltime = 0;
 let finaltimedisplay = '0.0s';
 
 
+// stop timer and process the result
+function checkplayertime()
+{
+  if(playeranswerarr.length === questionamount)
+  {
+    clearInterval(timer);
+  }
+  
 
+}
 
 
 // Scroll
 let valueY = 0;
 // timer for player
+function addtime()
+{
+  timeplayed += 0.1;
+  //  to evaluate player time stats 
+  checkplayertimes();
+}
+
+
 function timerstart()
 {
   timeplayed = 0;
   penaltytime = 0;
   finaltime = 0;
+  timer = setInterval(() => {
+    addtime();
+  }, 100);
+  gamePage.removeEventListener('click' , timerstart)
 }
 // store player selection and store choice in array
 function select(guesssedtrue)
