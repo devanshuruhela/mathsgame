@@ -45,7 +45,17 @@ function checkplayertime()
   {
     clearInterval(timer);
   }
-  
+  equationsArray.forEach((equation , index) =>
+    {
+      if(equation.evaluated === playeranswerarr[index])
+      {
+
+      }
+      else{
+        penaltytime +=0.5;
+      }
+    })
+    finaltime = timeplayed + penaltytime;
 
 }
 
