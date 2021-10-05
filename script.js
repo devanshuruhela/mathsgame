@@ -37,7 +37,13 @@ let penaltytime = 0;
 let finaltime = 0;
 let finaltimedisplay = '0.0s';
 
-
+// display score to player 
+function scoreToDom()
+{
+  finaltimedisplay = finaltime.toFixed(1);
+  basetime = timeplayed.toFixed(1);
+  penaltytime = penaltytime.toFixed(1);
+}
 // stop timer and process the result
 function checkplayertime()
 {
