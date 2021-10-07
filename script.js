@@ -59,7 +59,7 @@ function checkplayertime()
   if(playeranswerarr.length === questionamount)
   {
     clearInterval(timer);
-  }
+  
   equationsArray.forEach((equation , index) =>
     {
       if(equation.evaluated === playeranswerarr[index])
@@ -72,6 +72,7 @@ function checkplayertime()
     })
     finaltime = timeplayed + penaltytime;
     scoreToDom();
+  }
 }
 
 
@@ -82,7 +83,7 @@ function addtime()
 {
   timeplayed += 0.1;
   //  to evaluate player time stats 
-  checkplayertimes();
+  checkplayertime();
 }
 
 
