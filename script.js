@@ -36,6 +36,19 @@ let basetime = 0;
 let penaltytime = 0;
 let finaltime = 0;
 let finaltimedisplay = '0.0s';
+// play Gain function
+function playAgain()
+{
+  gamePage.addEventListener('click' , timerstart);
+  scorePage.hidden = true;
+  splashPage.hidden = false;
+  equationsArray.length = 0;
+  playeranswerarr.length =0 ;
+  valueY =0 ;
+  
+}
+
+
 // route toscore page
 function showscorepage()
 {
@@ -48,7 +61,7 @@ function scoreToDom()
   finaltimedisplay = finaltime.toFixed(1);
   basetime = timeplayed.toFixed(1);
   penaltytime = penaltytime.toFixed(1);
-  baseTimeEl.textContent = `Base Time: ${basetime}`;
+  baseTimeEl.textContent = `Base Time: ${basetime}s`;
   penaltyTimeEl.textContent = `Penalty: +${penaltytime}s`;
   finalTimeEl.textContent = `${finaltimedisplay}s`;
   showscorepage();
@@ -56,20 +69,20 @@ function scoreToDom()
 // stop timer and process the result
 function checkplayertime()
 {
-  if(playeranswerarr.length === questionamount)
+  if(playeranswerarr.length == questionamount)
   {
+    // console.log(playeranswerarr);
     clearInterval(timer);
-  
-  equationsArray.forEach((equation , index) =>
+    equationsArray.forEach((equation , index) =>
     {
       if(equation.evaluated === playeranswerarr[index])
       {
-
+        //kuch nahi karna 
       }
       else{
         penaltytime +=0.5;
       }
-    })
+    });
     finaltime = timeplayed + penaltytime;
     scoreToDom();
   }
