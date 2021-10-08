@@ -36,7 +36,16 @@ let timeplayed = 0;
 let basetime = 0;
 let penaltytime = 0;
 let finaltime = 0;
-let finaltimedisplay = '0.0s';
+let finaltimedisplay = '0.0';
+
+function displaybestscores()
+{
+  bestScores.forEach((bestScore , index)=>
+  {
+    const bestscoreelt = bestScore;
+    bestscoreelt.textContent = `${bestscorearray[index].bestScore}s`;
+  });
+}
 
 //check loacal storage and set bestscorevalues
 function getbestscore()
@@ -66,6 +75,25 @@ function getbestscore()
        ];
        localStorage.setItem('bestscores' , JSON.stringify(bestscorearray));
      }
+     displaybestscores();
+}
+
+// to update best score everytime
+function updatebestscore()
+{
+  bestscorearray.forEach((score , index)=>
+  {
+    if(questionamount == score.questions)
+    {
+      const savedbestscore = Number(bestscorearray[index].bestScore);
+      if(savedbestscore === 0 || savedbestscore<finaltime)
+      {
+        bestscorearray[index].bestScore = finaltimedisplay;
+      }
+    }
+  })
+  displaybestscores();
+  localStorage.setItem('bestscores' , JSON.stringify(bestscorearray));
 }
 // play Gain function
 function playAgain()
@@ -98,9 +126,11 @@ function scoreToDom()
   baseTimeEl.textContent = `Base Time: ${basetime}s`;
   penaltyTimeEl.textContent = `Penalty: +${penaltytime}s`;
   finalTimeEl.textContent = `${finaltimedisplay}s`;
+  updatebestscore();
   // scroll to top after game is over
   itemContainer.scrollTo({top:0 , behavior:'instant'})
   showscorepage();
+  
 }
 // stop timer and process the result
 function checkplayertime()
@@ -165,8 +195,8 @@ function getRandomint(max){
 
 function showgamePage()
 {
-  gamePage.hidden = false;
-  countdownPage.hidden = true;
+  gamePage.hidden = true;
+  countdownPage.hidden = false;
 
 }
 
@@ -242,9 +272,9 @@ function showcountdown()
 {
   countdownPage.hidden = false;
   splashPage.hidden = true;
-      countdownStart();
-      populateGamePage();
-      setTimeout(
+  countdownStart();
+  populateGamePage();
+  setTimeout(
         showgamePage(), 4000);
 }
 
@@ -300,3 +330,5 @@ startForm.addEventListener('click' , ()=>
 
 startForm.addEventListener('submit' , noofquestions);
 gamePage.addEventListener('click' , timerstart)
+
+getbestscore();
