@@ -45,13 +45,16 @@ function playAgain()
   equationsArray.length = 0;
   playeranswerarr.length =0 ;
   valueY =0 ;
-  
+  playAgainBtn.hidden = true;
 }
 
 
 // route toscore page
 function showscorepage()
 {
+  setTimeout(() => {
+    playAgainBtn.hidden = false
+  }, 1000);
   gamePage.hidden = true;
   scorePage.hidden = false;
 }
@@ -64,6 +67,8 @@ function scoreToDom()
   baseTimeEl.textContent = `Base Time: ${basetime}s`;
   penaltyTimeEl.textContent = `Penalty: +${penaltytime}s`;
   finalTimeEl.textContent = `${finaltimedisplay}s`;
+  // scroll to top after game is over
+  itemContainer.scrollTo({top:0 , behavior:'instant'})
   showscorepage();
 }
 // stop timer and process the result
