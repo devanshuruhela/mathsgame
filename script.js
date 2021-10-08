@@ -22,6 +22,7 @@ const playAgainBtn = document.querySelector('.play-again');
 let questionamount = 0;
 let equationsArray = [];
 let playeranswerarr = [];
+let bestscorearray =[];
 
 // Game Page
 let firstNumber = 0;
@@ -36,6 +37,36 @@ let basetime = 0;
 let penaltytime = 0;
 let finaltime = 0;
 let finaltimedisplay = '0.0s';
+
+//check loacal storage and set bestscorevalues
+function getbestscore()
+{
+     if(localStorage.getItem('bestscores'))
+     {
+       bestscorearray = JSON.parse(localStorage.bestScores);
+     }
+     else{
+       bestscorearray = [
+         {
+           questions:10,
+           bestScore:finaltimedisplay
+         },
+                  {
+           questions:25,
+           bestScore:finaltimedisplay
+         },
+                  {
+           questions:50,
+           bestScore:finaltimedisplay
+         },
+                  {
+           questions:99,
+           bestScore:finaltimedisplay
+         }
+       ];
+       localStorage.setItem('bestscores' , JSON.stringify(bestscorearray));
+     }
+}
 // play Gain function
 function playAgain()
 {
